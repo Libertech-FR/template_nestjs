@@ -1,0 +1,67 @@
+# extended LDIF
+#
+# LDAPv3
+# base <dc=test,dc=local> with scope subtree
+# filter: (&(!(o=test))(objectClass=*))
+# requesting: ALL
+#
+
+# users, test.local
+dn: ou=users,dc=test,dc=local
+ou: users
+objectClass: organizationalUnit
+objectClass: top
+
+# internal, test.local
+dn: ou=internal,dc=test,dc=local
+ou: internal
+objectClass: organizationalUnit
+objectClass: top
+
+# dc@ab.com, users, test.local
+dn: uid=dc@ab.com,ou=users,dc=test,dc=local
+givenName: Dupont
+sn: Celine
+cn: Dupont Celine
+mail: dc@ab.com
+uid: dc@ab.com
+userPassword:: e1NTSEF9UndiYmdWOFFPRlZvdUM0V0ZhbGQrejgxdUQ0ai9uMXE=
+o: 01
+objectClass: inetOrgPerson
+objectClass: top
+
+# manager1@aa.com, internal, test.local
+dn: uid=manager1@aa.com,ou=internal,dc=test,dc=local
+givenName: manager
+sn: 1
+cn: manager 1
+mail: manager1@aa.com
+uid: manager1@aa.com
+userPassword:: e1NTSEF9dXdoWEQ2VXBYZ3Q0Und5bis0MjVHc055Qjh4ODlzMW0=
+objectClass: inetOrgPerson
+objectClass: top
+
+# admin, internal, test.local
+dn: cn=admin,ou=internal,dc=test,dc=local
+cn: admin
+member: uid=manager1@aa.com,ou=internal,dc=test,dc=local
+objectClass: groupOfNames
+objectClass: top
+
+# restreint, internal, test.local
+dn: cn=restreint,ou=internal,dc=test,dc=local
+cn: restreint
+member: uid=nobody1@aa.com,ou=internal,dc=test,dc=local
+objectClass: groupOfNames
+objectClass: top
+
+# nobody1@aa.com, internal, test.local
+dn: uid=nobody1@aa.com,ou=internal,dc=test,dc=local
+givenName: nobody
+sn: 1
+cn: nobody 1
+mail: nobody1@aa.com
+uid: nobody1@aa.com
+userPassword:: e1NTSEF9b25sZkVDUWFMV21pWFd2bTRQa1U0SGtqeDJNak4zUDg=
+objectClass: inetOrgPerson
+objectClass: top
