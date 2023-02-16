@@ -13,8 +13,6 @@ import { ClientOptions } from 'ldapjs'
 import { AuthModule } from '~/auth/auth.module'
 import { APP_GUARD } from '@nestjs/core'
 import { AuthGuard } from '~/common/auth.guard'
-import { ExempleModule } from './exemple/exemple.module';
-import { ExempleModule } from './exemple/exemple.module';
 
 @Module({
   imports: [
@@ -51,7 +49,6 @@ import { ExempleModule } from './exemple/exemple.module';
       },
     }),
     AuthModule,
-    ExempleModule,
   ],
   controllers: [AppController],
   providers: [AppService, {

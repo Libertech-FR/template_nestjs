@@ -13,6 +13,8 @@ $ make init
 Dupliquer le .env.exemple puis supprimer la partie .exemple
 Remplir ensuite les variables
 
+Remplir les variables concernant le LDAP dans le Makefile
+
 ```bash
 #Pour lancer la bdd et autre services satelites :
 make dbs
@@ -20,12 +22,11 @@ make dbs
 #Pour lancer l'application :
 make dev
 
-
 #Pour ajouter une dépendance au projet :
 make exec
 yarn 'nom de la dependance'
 ```
-
+Le compte ldap par default est dc@ab.com/test
 ## Creation d'un service
 
 Lancer la commande make generate

@@ -1,25 +1,25 @@
 # extended LDIF
 #
 # LDAPv3
-# base <dc=test,dc=local> with scope subtree
-# filter: (&(!(o=test))(objectClass=*))
+# base <dc=exemple,dc=local> with scope subtree
+# filter: (&(!(o=exemple))(objectClass=*))
 # requesting: ALL
 #
 
-# users, test.local
-dn: ou=users,dc=test,dc=local
+# users, exemple.local
+dn: ou=users,dc=exemple,dc=local
 ou: users
 objectClass: organizationalUnit
 objectClass: top
 
-# internal, test.local
-dn: ou=internal,dc=test,dc=local
+# internal, exemple.local
+dn: ou=internal,dc=exemple,dc=local
 ou: internal
 objectClass: organizationalUnit
 objectClass: top
 
-# dc@ab.com, users, test.local
-dn: uid=dc@ab.com,ou=users,dc=test,dc=local
+# dc@ab.com, users, exemple.local
+dn: uid=dc@ab.com,ou=users,dc=exemple,dc=local
 givenName: Dupont
 sn: Celine
 cn: Dupont Celine
@@ -30,8 +30,8 @@ o: 01
 objectClass: inetOrgPerson
 objectClass: top
 
-# manager1@aa.com, internal, test.local
-dn: uid=manager1@aa.com,ou=internal,dc=test,dc=local
+# manager1@aa.com, internal, exemple.local
+dn: uid=manager1@aa.com,ou=internal,dc=exemple,dc=local
 givenName: manager
 sn: 1
 cn: manager 1
@@ -41,22 +41,22 @@ userPassword:: e1NTSEF9dXdoWEQ2VXBYZ3Q0Und5bis0MjVHc055Qjh4ODlzMW0=
 objectClass: inetOrgPerson
 objectClass: top
 
-# admin, internal, test.local
-dn: cn=admin,ou=internal,dc=test,dc=local
+# admin, internal, exemple.local
+dn: cn=admin,ou=internal,dc=exemple,dc=local
 cn: admin
-member: uid=manager1@aa.com,ou=internal,dc=test,dc=local
+member: uid=manager1@aa.com,ou=internal,dc=exemple,dc=local
 objectClass: groupOfNames
 objectClass: top
 
-# restreint, internal, test.local
-dn: cn=restreint,ou=internal,dc=test,dc=local
+# restreint, internal, exemple.local
+dn: cn=restreint,ou=internal,dc=exemple,dc=local
 cn: restreint
-member: uid=nobody1@aa.com,ou=internal,dc=test,dc=local
+member: uid=nobody1@aa.com,ou=internal,dc=exemple,dc=local
 objectClass: groupOfNames
 objectClass: top
 
-# nobody1@aa.com, internal, test.local
-dn: uid=nobody1@aa.com,ou=internal,dc=test,dc=local
+# nobody1@aa.com, internal, exemple.local
+dn: uid=nobody1@aa.com,ou=internal,dc=exemple,dc=local
 givenName: nobody
 sn: 1
 cn: nobody 1
