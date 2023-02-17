@@ -4,14 +4,19 @@
 
 ## Installation
 
-Après avoir cloné le depot, lancer une release sur le depot git pour construire l'image si elle n'existe pas
-
-## Running the app
-
 Dupliquer le .env.exemple puis supprimer la partie .exemple
 Remplir ensuite les variables
 
-Remplir les variables concernant le LDAP dans le Makefile, pour l'image, prendre celle du package du depot git commenceant par ghcr.io
+Après avoir cloné le depot, lancer une release sur le depot git pour construire l'image si elle n'existe pas
+Remplir les variables dans le Makefile, pour l'image, prendre celle du package du depot git commenceant par ghcr.io
+Puis lancer la commande 
+
+```bash
+make exec
+yarn install
+```
+
+## Running the app
 
 ```bash
 #Pour lancer la bdd et autre services satelites :
