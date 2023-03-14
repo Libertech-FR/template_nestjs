@@ -1,7 +1,5 @@
-'use strict'
-
-import { ModuleMetadata, Type } from '@nestjs/common/interfaces'
 import { LoggerService } from '@nestjs/common'
+import { ModuleMetadata, Type } from '@nestjs/common/interfaces'
 import { ClientOptions } from 'ldapjs'
 
 export const LDAP_OPTIONS = 'LDAP_OPTIONS'

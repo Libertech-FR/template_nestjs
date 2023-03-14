@@ -1,5 +1,3 @@
-'use strict'
-
 function commonPipe(prefix: string, search: string, fields: string[]): string {
   const filters = []
   for (const field of fields) {

@@ -1,5 +1,3 @@
-'use strict'
-
 import { Inject, Injectable, LoggerService, Scope } from '@nestjs/common'
 import { Client, createClient, SearchEntryObject, SearchOptions } from 'ldapjs-promise'
 import { AsyncConstructor } from 'async-constructor'
@@ -37,7 +35,7 @@ export class LdapService extends AsyncConstructor {
 
   public get client(): Client {
     if (!this.initialized) {
-      (async () => {
+      ;(async () => {
         this.initialized = true
         const decipher = createDecipheriv(
           this.config.get<string | CipherCCMTypes | CipherGCMTypes>('crypt.algorithm'),
@@ -67,7 +65,11 @@ export class LdapService extends AsyncConstructor {
     await this.client.del(dn, controls)
   }
 
-  public async modify(dn: string, change: Change | Array<Change>, controls?: Control | Array<Control>): Promise<SearchEntryObject> {
+  public async modify(
+    dn: string,
+    change: Change | Array<Change>,
+    controls?: Control | Array<Control>,
+  ): Promise<SearchEntryObject> {
     this.logger.debug(`Send ldapmodify base <${dn}> with filters <${JSON.stringify(change)}>`)
     await this.client.modify(dn, change, controls)
     return (await this.client.searchReturnAll(dn)).entries[0]
@@ -75,9 +77,15 @@ export class LdapService extends AsyncConstructor {
 
   // noinspection JSUnusedGlobalSymbols
   public async getSchema(options?: SearchOptions, controls?: Control | Array<Control>): Promise<any> {
-    return (await this.client.searchReturnAll('cn=schema', {
-      ...options,
-      scope: 'base',
-    }, controls)).entries[0]
+    return (
+      await this.client.searchReturnAll(
+        'cn=schema',
+        {
+          ...options,
+          scope: 'base',
+        },
+        controls,
+      )
+    ).entries[0]
   }
 }

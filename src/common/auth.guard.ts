@@ -1,5 +1,3 @@
-'use strict'
-
 import { ExecutionContext, Injectable } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { AuthGuard as AuthGuardInternal } from '@nestjs/passport'
@@ -13,10 +11,10 @@ export class AuthGuard extends AuthGuardInternal(['jwt']) {
   }
 
   public canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-    const isUnprotected = this.reflector.getAllAndOverride<boolean>(
-      META_UNPROTECTED,
-      [context.getClass(), context.getHandler()],
-    )
+    const isUnprotected = this.reflector.getAllAndOverride<boolean>(META_UNPROTECTED, [
+      context.getClass(),
+      context.getHandler(),
+    ])
     return isUnprotected || super.canActivate(context)
   }
 }

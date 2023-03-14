@@ -1,8 +1,6 @@
-'use strict'
-
 import { DynamicModule, Global, Module, Provider, Type } from '@nestjs/common'
+import { LdapModuleAsyncOptions, LdapModuleOptions, LdapOptionsFactory, LDAP_OPTIONS } from '~/ldap/ldap.interface'
 import { LdapService } from './ldap.service'
-import { LDAP_OPTIONS, LdapModuleAsyncOptions, LdapModuleOptions, LdapOptionsFactory } from '~/ldap/ldap.interface'
 
 @Global()
 @Module({

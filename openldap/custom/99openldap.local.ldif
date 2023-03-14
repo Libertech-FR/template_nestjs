@@ -37,7 +37,7 @@ sn: 1
 cn: manager 1
 mail: manager1@aa.com
 uid: manager1@aa.com
-userPassword:: e1NTSEF9dXdoWEQ2VXBYZ3Q0Und5bis0MjVHc055Qjh4ODlzMW0=
+userPassword:: e1NTSEF9UndiYmdWOFFPRlZvdUM0V0ZhbGQrejgxdUQ0ai9uMXE=
 objectClass: inetOrgPerson
 objectClass: top
 
@@ -62,6 +62,6 @@ sn: 1
 cn: nobody 1
 mail: nobody1@aa.com
 uid: nobody1@aa.com
-userPassword:: e1NTSEF9b25sZkVDUWFMV21pWFd2bTRQa1U0SGtqeDJNak4zUDg=
+userPassword:: e1NTSEF9UndiYmdWOFFPRlZvdUM0V0ZhbGQrejgxdUQ0ai9uMXE=
 objectClass: inetOrgPerson
 objectClass: top
