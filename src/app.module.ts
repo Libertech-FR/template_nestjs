@@ -13,6 +13,7 @@ import { ClientOptions } from 'ldapjs'
 import { AuthModule } from '~/auth/auth.module'
 import { APP_GUARD } from '@nestjs/core'
 import { AuthGuard } from '~/common/auth.guard'
+import { ClientsModule, Transport } from '@nestjs/microservices'
 
 @Module({
   imports: [
@@ -20,41 +21,54 @@ import { AuthGuard } from '~/common/auth.guard'
       isGlobal: true,
       load: [configInstance],
     }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async(configService: ConfigService) => ({
-        uri: configService.get<string>('mongoose.uri'),
-        ...configService.get<Record<string, any>>('mongoose.options'),
-      }),
-    }),
+    // MongooseModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: async(configService: ConfigService) => ({
+    //     uri: configService.get<string>('mongoose.uri'),
+    //     ...configService.get<Record<string, any>>('mongoose.options'),
+    //   }),
+    // }),
     RedisModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async(configService: ConfigService) => ({
+      useFactory: async (configService: ConfigService) => ({
         config: {
           url: configService.get<string>('ioredis.uri'),
           ...configService.get<RedisOptions>('ioredis.options'),
         },
       }),
     }),
-    LdapModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        return {
-          logger: new Logger('LDAP'),
-          client: configService.get<ClientOptions>('ldap.client'),
-        }
+    ClientsModule.register([
+      {
+        name: 'TEST_SERVICE',
+        transport: Transport.REDIS,
+        options: {
+          host: 'redis-16759.c250.eu-central-1-1.ec2.cloud.redislabs.com',
+          port: 16759,
+          password: 'eFq2jSo2wVnzgYB5ZF6WQCZg6f1U5sZu',
+        },
       },
-    }),
+    ]),
+    // LdapModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: async (configService: ConfigService) => {
+    //     return {
+    //       logger: new Logger('LDAP'),
+    //       client: configService.get<ClientOptions>('ldap.client'),
+    //     }
+    //   },
+    // }),
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_GUARD,
-    useClass: AuthGuard
-  }],
+  providers: [
+    AppService,
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuard,
+    // },
+  ],
 })
-export class AppModule {
-}
+export class AppModule {}
